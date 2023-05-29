@@ -4,11 +4,17 @@
  */
 package Game;
 
+import java.util.ArrayList;
+import javax.swing.JPanel;
+
 /**
  *
  * @author yucha
  */
 public class SimpleRPGStart extends javax.swing.JFrame {
+    
+    
+  
 
     /**
      * Creates new form SimpleRPGStart
@@ -28,10 +34,12 @@ public class SimpleRPGStart extends javax.swing.JFrame {
 
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu3 = new javax.swing.JMenu();
+        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
+        jCheckBoxMenuItem2 = new javax.swing.JCheckBoxMenuItem();
+        jMenu4 = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -41,22 +49,30 @@ public class SimpleRPGStart extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         jLabel1.setText("Simple RPG Game");
 
-        jMenu1.setText("Start Game");
+        jMenu3.setText("Start Game");
 
-        jMenuItem1.setText("NewGame");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jCheckBoxMenuItem1.setSelected(true);
+        jCheckBoxMenuItem1.setText("New Game");
+        jCheckBoxMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jCheckBoxMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu3.add(jCheckBoxMenuItem1);
 
-        jMenuBar1.add(jMenu1);
+        jCheckBoxMenuItem2.setSelected(true);
+        jCheckBoxMenuItem2.setText("Load Game");
+        jMenu3.add(jCheckBoxMenuItem2);
 
-        jMenu2.setText("Score");
-        jMenuBar1.add(jMenu2);
+        jMenuBar2.add(jMenu3);
 
-        setJMenuBar(jMenuBar1);
+        jMenu4.setText("Saved Game");
+        jMenuBar2.add(jMenu4);
+
+        jMenu1.setText("Score");
+        jMenuBar2.add(jMenu1);
+
+        setJMenuBar(jMenuBar2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -88,10 +104,14 @@ public class SimpleRPGStart extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jCheckBoxMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
+        if (!ChooseHeroPanel.isVisible()) {
+            setPanelVisible(ChooseHeroPanel);
+        }
+    }//GEN-LAST:event_jCheckBoxMenuItem1ActionPerformed
+   
+   
     /**
      * @param args the command line arguments
      */
@@ -128,11 +148,38 @@ public class SimpleRPGStart extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenuBar jMenuBar2;
     // End of variables declaration//GEN-END:variables
+
+    
+   private JPanel ChooseHeroPanel;
+   private JPanel SimpleRPGStart;
+   private JPanel BattleMapPanel;
+   
+   private final ArrayList<JPanel> panels = new ArrayList<>();
+   
+    public void setPanelVisible(JPanel jPanel){
+      for(JPanel jpanel : panels){
+          jpanel.setVisible(jpanel.equals(jPanel));
+      }
+    }
+    
+    
+    public JPanel getSimpleRPGStart(){
+    return SimpleRPGStart;
+    }
+    
+    public JPanel getChooseHeroPanel(){
+    return ChooseHeroPanel;
+    }
+    public JPanel getBattleMapPanel(){
+    return BattleMapPanel;
+    }
 }
